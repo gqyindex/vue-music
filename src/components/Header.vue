@@ -3,12 +3,26 @@
   <header>
     <a href="#"></a>
     <input placeholder="search something you want...">
-    <a><i class="el-icon-user"></i></a>
+    <a>
+      {{userInfo.nickname}}
+    </a>
   </header>
 </template>
 
 <script>
-
+    export default {
+      data(){
+        return {
+          userInfo :{
+            nickname:''
+          }
+        }
+      },
+      mounted() {
+          this.userInfo = JSON.parse(sessionStorage.getItem('user')).profile;
+          console.log(this.userInfo)
+      }
+    }
 </script>
 
 <style scoped lang="less">
@@ -27,7 +41,7 @@
       width: 20%;
       height: 40px;
       position: absolute;
-      top: 14px;
+      top: 12px;
       left: 40%;
       border: 1px solid #8eb0ff;
       border-radius: 10px;
@@ -37,8 +51,14 @@
       position: absolute;
       right: 100px;
       top: 5px;
-      font-size: 24px;
-      color: #8eb0ff;
+      font-size: 16px;
+      color: #333;
+      height: 60px;
+      line-height: 60px;
+      img{
+        width: 60px;
+        height: 60px;
+      }
     }
 
   }
