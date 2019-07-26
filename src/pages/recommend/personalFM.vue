@@ -1,12 +1,12 @@
 <template>
     <section>
-      <h1>DJPROGRAMMER</h1>
+      personal FM
     </section>
 </template>
 
 <script>
     export default {
-        name: "djprogram"
+        name: "personalFM"
     }
 </script>
 

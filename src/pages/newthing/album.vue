@@ -1,12 +1,12 @@
 <template>
     <section>
-      <h1>presonlize</h1>
+      album
     </section>
 </template>
 
 <script>
     export default {
-        name: "presonlize"
+        name: "album"
     }
 </script>
 

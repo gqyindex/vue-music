@@ -1,12 +1,12 @@
 <template>
     <section>
-      <h1>recommend</h1>
+      yunData
     </section>
 </template>
 
 <script>
     export default {
-        name: "recomend"
+        name: "yunData"
     }
 </script>
 
