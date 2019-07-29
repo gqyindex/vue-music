@@ -7,7 +7,7 @@
       <!--      音乐专辑渲染-->
       <div style="overflow: hidden">
         <el-card :body-style="{ padding: '0px' }" shadow="always" v-for="(item,index) in hearIAMs" :key="index">
-          <img :src="item.blurPicUrl" alt="album picture">
+          <img :src="item.blurPicUrl" alt="album picture" @click="getDetail(item.id)">
           <p>{{item.name}}</p>
         </el-card>
       </div>
@@ -53,6 +53,8 @@
         console.log(val);
         this.listInfo();
       },
+
+      //分页渲染
       listInfo() {
         hearIAM({
           offset:this.currentPage - 1,
@@ -69,6 +71,16 @@
             type: 'warning'
           });
         })
+      },
+
+      //进入详情
+      getDetail(id) {
+        this.$router.push({
+          name: "IAMdetail",
+          query: {
+            id: id
+          }
+        });
       }
     }
   }

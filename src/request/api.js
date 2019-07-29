@@ -24,7 +24,10 @@ export const getRegister = (data) => {
 
 //新碟上架
 export const hearIAM = (data) => {
-  console.log(data)
-  // return axios.get('/top/album?offset=0&limit=20')
   return axios.get('/top/album',{params:data})
+};
+
+// 获取新碟的详情
+export const hearIAMdetail = (data) => {
+  return axios.get('/album?id=32311&limit=20',{params:data})
 };
