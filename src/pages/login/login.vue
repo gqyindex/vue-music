@@ -68,7 +68,7 @@
               type: 'success'
             });
           sessionStorage.setItem("user",JSON.stringify(res.data)); //用户信息存储在客户端
-            this.$router.push('personalized'); // 登录成功跳转到默认的路由
+            this.$router.push('playlist'); // 登录成功跳转到默认的路由
           }
         }).catch(err => {
           this.$message({

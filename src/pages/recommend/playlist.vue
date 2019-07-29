@@ -1,12 +1,19 @@
 <template>
     <section>
-      palyList
+      {{playLists}}
     </section>
 </template>
 
 <script>
-    export default {
-        name: "playlist"
+  import {playList} from "../../request/api";
+
+  export default {
+        name: "playlist",
+        data() {
+          return {
+            playLists:null
+          }
+        },
     }
 </script>
 

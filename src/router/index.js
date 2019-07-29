@@ -9,7 +9,7 @@ import songList from "../pages/hotList/songList"
 import likeList from "../pages/myInfo/likeList"
 import likeMusic from "../pages/myInfo/likeMusic"
 import personInfo from "../pages/myInfo/personInfo"
-import songRecored from "../pages/myInfo/songRecord"
+import songRecord from "../pages/myInfo/songRecord"
 import album from "../pages/newthing/album"
 import hearIAM from "../pages/newthing/hearIAM"
 import newMV from "../pages/newthing/newMV"
@@ -71,9 +71,9 @@ export default new Router({
           component:personInfo
         },
         {
-          path:'/songRecored',
-          name:songRecored,
-          component:songRecored
+          path:'/songRecord',
+          name:'songRecord',
+          component:songRecord
         }
       ]
     },

@@ -20,7 +20,6 @@
       },
       mounted() {
           this.userInfo = JSON.parse(sessionStorage.getItem('user')).profile;
-          console.log(this.userInfo)
       }
     }
 </script>

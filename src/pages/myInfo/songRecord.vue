@@ -1,6 +1,6 @@
 <template>
     <section>
-      Record
+      songRecord
     </section>
 </template>
 
