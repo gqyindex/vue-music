@@ -95,7 +95,7 @@
     display: inline-block;
     float: left;
     width: 12%;
-    height: 180px;
+    height: 186px;
     border-radius: 10px;
     margin: 0 -3px 20px 5%; //-3px消除inline-block的默认间距问题
     text-align: center;
