@@ -98,6 +98,7 @@
     height: 180px;
     border-radius: 10px;
     margin: 0 -3px 20px 5%; //-3px消除inline-block的默认间距问题
+    text-align: center;
     img {
       width: 100%;
       height: 160px;

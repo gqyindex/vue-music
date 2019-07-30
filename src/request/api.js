@@ -29,5 +29,15 @@ export const hearIAM = (data) => {
 
 // 获取新碟的详情
 export const hearIAMdetail = (data) => {
-  return axios.get('/album?id=32311&limit=20',{params:data})
+  return axios.get('/album',{params:data})
+};
+
+// 根据id获取某一首歌曲的播放音频
+export const songAudio = (data) => {
+  return axios.get('/song/url',{params:data})
+};
+
+//根据id获取某一首歌曲的歌词
+export const songLyric = (data) => {
+  return axios.get('/lyric',{params:data})
 };

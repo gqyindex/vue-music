@@ -8,12 +8,20 @@ import 'element-ui/lib/theme-chalk/index.css'
 import Header from "./components/Header"
 import AsideNav from "./components/AsideNav"
 
-Vue.use(ElementUI)
+//引入管道函数
+import * as filters from "./assets/javascript/formatTime";
 
-Vue.config.productionTip = false
+// Vue.filter('format',format);
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+});
 
-Vue.component('v-header',Header)
-Vue.component('v-aside',AsideNav)
+Vue.use(ElementUI);
+
+Vue.config.productionTip = false;
+
+Vue.component('v-header',Header);
+Vue.component('v-aside',AsideNav);
 
 /* eslint-disable no-new */
 new Vue({
@@ -21,4 +29,4 @@ new Vue({
   router,
   components: { App },
   template: '<App/>'
-})
+});

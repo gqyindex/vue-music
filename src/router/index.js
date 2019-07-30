@@ -13,6 +13,7 @@ import songRecord from "../pages/myInfo/songRecord"
 import album from "../pages/newthing/album"
 import hearIAM from "../pages/newthing/hearIAM"
 import IAMdetail from "../pages/newthing/IAMdetail"
+import songAudios from "../pages/newthing/songAudio"
 import newMV from "../pages/newthing/newMV"
 import newSong from "../pages/newthing/newsong"
 import hitMusic from "../pages/recommend/hitMusic"
@@ -103,9 +104,14 @@ export default new Router({
           component:newSong
         },
         {
-          path:'IAMdetail',
+          path:'/IAMdetail',
           name:'IAMdetail',
           component:IAMdetail
+        },
+        {
+          path:'/songAudios',
+          name:'songAudios',
+          component:songAudios
         }
       ]
     },
