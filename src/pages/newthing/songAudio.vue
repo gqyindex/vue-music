@@ -90,13 +90,7 @@
         /*获取歌曲音频播放的currentTime
         * 获取str中的当前时间比较
         * 显示符合条件的那一句歌词*/
-        console.log("设置前的" + this.$refs.lyricBox.getBoundingClientRect().top);
 
-        this.$nextTick(() => {
-          this.$refs.lyricBox.top = '0'
-        });
-
-        console.log("设置后的" + this.$refs.lyricBox.getBoundingClientRect().top);
 
         let _this = this;
         let timer = setInterval(function () {
@@ -105,8 +99,9 @@
               // 高亮显示当前的这一句歌词
               _this.activeLyric = str[i][1];
               // 歌词整体向上滚动
-              /*if (i > 3 && i < str.length - 3) {
-                 _this.$refs.lyricBox.offsetHeight = _this.liHeight * (i - 3) + 'px';
+              _this.$refs.lyricBox.style.top = - _this.liHeight + 'px';
+             /* if (i > 3 && i < str.length - 3) {
+                _this.$refs.lyricBox.style.top = _this.liHeight * (i - 3) + 'px';
               }*/
             }
           }
