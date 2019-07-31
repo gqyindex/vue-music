@@ -93,7 +93,7 @@
         console.log("设置前的" + this.$refs.lyricBox.getBoundingClientRect().top);
 
         this.$nextTick(() => {
-          this.$refs.lyricBox.top = '0'
+          this.$refs.lyricBox.top = '0px'
         });
 
         console.log("设置后的" + this.$refs.lyricBox.getBoundingClientRect().top);
