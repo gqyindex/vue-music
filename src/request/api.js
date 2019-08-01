@@ -1,4 +1,5 @@
 import axios from 'axios'
+import yunData from "../pages/yunFile/yunData";
 
 axios.defaults.baseURL = 'http://localhost:3000';
 
@@ -40,4 +41,9 @@ export const songAudio = (data) => {
 //根据id获取某一首歌曲的歌词
 export const songLyric = (data) => {
   return axios.get('/lyric',{params:data})
+};
+
+//根据id获取某一个歌手的详细信息
+export const singerDes = (data) => {
+  return axios.get('/artists',{params:data})
 };

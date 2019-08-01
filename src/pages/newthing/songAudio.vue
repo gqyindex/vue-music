@@ -6,25 +6,25 @@
     </div>
 
 
-    <div v-else>
+    <div v-else style="position: relative">
 
-      <ul ref="lyricBox">
-        <li v-for="(item,index) in lyricArr" :key="index" ref="singleLyric"
-            :style="{'color': item[1] === activeLyric ? '#8eb0ff':'' }">{{item[1]}}
-        </li>
-      </ul>
-
+      <div class="coverBox" ref="coverBox">
+        <ul ref="lyricBox">
+          <li v-for="(item,index) in lyricArr" :key="index" ref="singleLyric"
+              :class="item[1] === activeLyric ? 'active':'' ">{{item[1]}}
+          </li>
+        </ul>
+      </div>
       <!--      进度条-->
-      <!--<div class="audioPlay">
+      <div class="view">
         <span>00：00</span>
-        <span class="progress"></span>
         <span class="progressStatic"></span>
+        <span class="progress"></span>
         <span>04：56</span>
         <i class="el-icon-video-pause"></i>
-      </div>-->
-       <audio :src="songUrl" ref="audioPlay" controls id="music">
+      </div>
 
-       </audio>
+      <audio :src="songUrl" ref="audioPlay"></audio>
     </div>
 
   </section>
@@ -91,21 +91,22 @@
         * 获取str中的当前时间比较
         * 显示符合条件的那一句歌词*/
 
-
         let _this = this;
         let timer = setInterval(function () {
+          // console.log(_this.$refs.lyricBox.style.top); 获取到的值为空,但是可以设置值？？？？
           for (let i = 0; i < str.length; i++) {
             if (_this.audio.currentTime > str[i][0] && _this.audio.currentTime < str[i + 1][0] && i != str.length - 1) {
               // 高亮显示当前的这一句歌词
               _this.activeLyric = str[i][1];
               // 歌词整体向上滚动
-              _this.$refs.lyricBox.style.top = - _this.liHeight + 'px';
-             /* if (i > 3 && i < str.length - 3) {
-                _this.$refs.lyricBox.style.top = _this.liHeight * (i - 3) + 'px';
-              }*/
+              if (i > 3 && i < str.length - 3) {
+                _this.$refs.coverBox.style.top = -parseInt(_this.liHeight) * (i - 3) + 'px';
+              }
             }
           }
+
           if (_this.audio.paused) {
+            console.log('audio paused');
             clearInterval(timer)
           }
         }, 1000)
@@ -121,20 +122,30 @@
     text-align: center;
   }
 
+  .active {
+    color: #8eb0ff;
+    font-size: 16px;
+  }
+
   .default {
     img {
       margin-top: 5%;
     }
   }
 
+  .coverBox {
+    width: 100%;
+    height: 680px;
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    transition: top .6s;
+  }
+
   ul {
     width: 80%;
-    height: 620px;
-    position: absolute;
-    top: 80px;
     overflow: hidden;
     margin-bottom: 40px;
-    border: 2px solid gainsboro;
 
     li {
       margin: 10px;
@@ -142,24 +153,23 @@
     }
   }
 
-
-  .audioPlay {
-    position: relative;
+  .view {
+      position: relative;
+      top: 800px;
   }
 
   .progress {
     display: inline-block;
-    width: 50%;
+    width: 40%;
     height: 6px;
     background-color: #fff;
   }
 
   .progressStatic {
     &:extend(.progress);
+    width: 30%;
     background-color: #8eb0ff;
     position: absolute;
-    left: 344px;
     top: 9px;
   }
-
 </style>

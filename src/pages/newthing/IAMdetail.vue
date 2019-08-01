@@ -91,8 +91,13 @@
           }
         });
       },
-      getSinger(val) {
-        console.log(val)
+      getSinger(id) {
+        this.$router.push({
+          name:'singer',
+          query:{
+            id:id
+          }
+        })
       }
     }
   }
