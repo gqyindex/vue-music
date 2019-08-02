@@ -7,7 +7,7 @@
       <div class="rightBox">
         <h3>singer : {{describe.artist.name}}</h3>
         <p>publishTime : {{describe.artist.publishTime | format}}</p>
-        <p>description : {{describe.artist.briefDesc}}</p>
+        <p v-if="describe.artist.briefDesc">description : {{describe.artist.briefDesc}}</p>
       </div>
     </div>
     <!--    tab切换-->
@@ -21,7 +21,8 @@
             </el-table-column>
             <el-table-column label="喜欢" width="80px">
               <template slot-scope="scope">
-                <i class="el-icon-sunny" ref="likeIcon"></i>
+<!--                <i class="el-icon-sunny" :color=" isActive === scope.row.id ? '#8eb0ff':'' " @click="like(scope.row.id)"></i>-->
+                <i class="el-icon-sunny" :class = "isActive === scope.row.id ? 'active':''" @click="like(scope.row.id)"></i>
               </template>
             </el-table-column>
             <el-table-column label="歌名">
@@ -36,7 +37,7 @@
             </el-table-column>
             <el-table-column label="歌手">
               <template slot-scope="scope">
-                <el-tag v-for="(item,index) in scope.row.ar" :key="index" style="margin: 2px" >{{item.name}}</el-tag>
+                <el-tag v-for="(item,index) in scope.row.ar" :key="index">{{item.name}}</el-tag>
               </template>
             </el-table-column>
             <el-table-column label="专辑">
@@ -62,13 +63,15 @@
 </template>
 
 <script>
-  import {singerDes} from "../../request/api";
+  import {singerDes, likeMusic} from "../../request/api";
   import {format} from "../../assets/javascript/formatTime";
 
   export default {
     name: "singer",
     data() {
       return {
+        userInfo: '',
+        isActive:0,
         describe: {
           artist: {
             img1v1Url: '',
@@ -80,14 +83,14 @@
             ar: [],
             al: {},
             mv: '',
-            name: '',
-            songId: ''
+            name: ''
           }]
         },
         activeName: 'music'
       }
     },
     mounted() {
+      this.userInfo = JSON.parse(sessionStorage.getItem('user')).profile;
       singerDes({
         id: this.$route.query.id
       }).then(res => {
@@ -100,7 +103,21 @@
       },
       indexMethod(index) {
         return index + 1
-      }
+      },
+      like(id) {
+        // 喜欢音乐的图标是否变化
+        this.isActive = id;
+
+        // 喜欢音乐接口
+           likeMusic({
+              id: id
+           }).then(res => {
+              console.log(res)
+           });
+
+
+
+      },
     }
   }
 </script>
@@ -108,13 +125,17 @@
 <style scoped lang="less">
   @commonMargin: 10px;
   .title {
-    display: flex;
+    margin-bottom: @commonMargin;
+    clear: both;
+    height: 160px;
+    overflow: hidden;
 
     .leftBox {
       width: 140px;
       height: 140px;
       margin-right: 40px;
       overflow: hidden;
+      float: left;
 
       img {
         width: 140px;
@@ -130,6 +151,10 @@
     h3, p {
       margin-bottom: @commonMargin;
     }
+  }
+  .active {
+    color: #f13f40;
+    font-size: 24px;
   }
 
 </style>

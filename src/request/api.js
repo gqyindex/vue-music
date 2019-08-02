@@ -47,3 +47,7 @@ export const songLyric = (data) => {
 export const singerDes = (data) => {
   return axios.get('/artists',{params:data})
 };
+
+export const likeMusic = (data) => {
+  return axios.get('/like',{params:data})
+};

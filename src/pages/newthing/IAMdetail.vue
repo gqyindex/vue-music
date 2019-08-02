@@ -23,7 +23,7 @@
         </el-table-column>
 
         <el-table-column
-          label="歌曲名称" >
+          label="歌曲名称">
           <template slot-scope="scope">
             <span @click="getSong(scope.row.songId)">{{tableData[0].songName}}</span>
           </template>
@@ -32,7 +32,9 @@
         <el-table-column label="歌手">
           <!--          <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>-->
           <template slot-scope="scope">
-          <el-tag type="success" v-for="(item,index) in tableData[0].singer" :key="index" @click="getSinger(scope.row.singer[0].id)">{{item.name}}</el-tag>
+            <el-tag type="success" v-for="(item,index) in tableData[0].singer" :key="index"
+                    @click="getSinger(scope.row.singer[0].id)">{{item.name}}
+            </el-tag>
           </template>
         </el-table-column>
       </el-table>
@@ -85,17 +87,17 @@
       },
       getSong(id) {
         this.$router.push({
-          name:'songAudios',
-          query:{
-            id:id
+          name: 'songAudios',
+          query: {
+            id: id
           }
         });
       },
       getSinger(id) {
         this.$router.push({
-          name:'singer',
-          query:{
-            id:id
+          name: 'singer',
+          query: {
+            id: id
           }
         })
       }
