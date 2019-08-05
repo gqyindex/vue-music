@@ -51,3 +51,7 @@ export const singerDes = (data) => {
 export const likeMusic = (data) => {
   return axios.get('/like',{params:data})
 };
+
+export const singleMV = (data) => {
+  return axios.get('mv/url',{params:data})
+};

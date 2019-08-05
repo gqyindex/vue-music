@@ -17,6 +17,7 @@ import singer from "../pages/newthing/singer"
 import songAudios from "../pages/newthing/songAudio"
 import newMV from "../pages/newthing/newMV"
 import newSong from "../pages/newthing/newsong"
+import singerMV from "../pages/newthing/singleMV"
 import hitMusic from "../pages/recommend/hitMusic"
 import personalFM from "../pages/recommend/personalFM"
 import playlist from "../pages/recommend/playlist"
@@ -118,6 +119,11 @@ export default new Router({
           path:'/singer',
           name:'singer',
           component:singer
+        },
+        {
+          path:'/singerMV',
+          name:'singerMV',
+          component:singerMV
         }
       ]
     },
