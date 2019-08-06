@@ -44,13 +44,14 @@
             </el-table-column>-->
             <el-table-column label="专辑">
               <template slot-scope="scope">
-                <span>{{scope.row.al.name}}</span>
+                <span @click="albumhandle(scope.row.al.id)">{{scope.row.al.name}}</span>
               </template>
             </el-table-column>
             <el-table-column label="专辑封面">
               <template slot-scope="scope">
                 <img :src="scope.row.al.picUrl"
-                     style="width: 60px;height: 60px;border-radius: 50%;border: 1px solid #8eb0ff;">
+                     style="width: 60px;height: 60px;border-radius: 50%;border: 1px solid #8eb0ff;"
+                     @click="albumhandle(scope.row.al.id)">
               </template>
             </el-table-column>
           </el-table>
@@ -62,7 +63,15 @@
           </el-pagination>
         </el-tab-pane>
 
-        <el-tab-pane label="HotTopic" name="topic">话题</el-tab-pane>
+        <el-tab-pane label="Introduction" name="topic">
+              <div v-if="this.introduction.length">
+               <el-card shadow="always" v-for="(item,index) in introduction" :key="index" style="margin: 10px">
+                 <el-tag type="success">{{item.ti}}</el-tag>
+                 <p style="margin-top: 10px">{{item.txt}}</p>
+                </el-card>
+              </div>
+              <div v-else>该歌手没有Introduction</div>
+        </el-tab-pane>
       </el-tabs>
     </section>
 
@@ -72,7 +81,7 @@
 </template>
 
 <script>
-  import {singerDes, likeMusic} from "../../request/api";
+  import {singerInfo, likeMusic,singerDesc} from "../../request/api";
   import {format} from "../../assets/javascript/formatTime";
 
   export default {
@@ -98,12 +107,13 @@
         },
         currentPage: 1,
         pagesize: 10,
-        activeName: 'music'
+        activeName: 'music',
+        introduction: []
       }
     },
     mounted() {
       this.userInfo = JSON.parse(sessionStorage.getItem('user')).profile;
-      singerDes({
+      singerInfo({
         id: this.$route.query.id
       }).then(res => {
         this.describe = res.data;
@@ -111,7 +121,7 @@
     },
     methods: {
       handleClick(tab, event) {
-
+        this.activeName === 'topic' ? this.getTopic() : ''
       },
 
       indexMethod(index) {
@@ -133,7 +143,7 @@
         likeMusic({
           id: id
         }).then(res => {
-          console.log(res)
+         // console.log(res)
         });
         this.flag = true;
       },
@@ -157,6 +167,23 @@
           query:{
             id:mvId
           }
+        })
+      },
+
+      albumhandle(id) {
+        this.$router.push({
+          name:"IAMdetail",
+          query:{
+            id:id
+          }
+        })
+      },
+
+      getTopic() {
+        singerDesc({
+          id: this.$route.query.id
+        }).then(res => {
+          this.introduction = res.data.introduction
         })
       }
     }

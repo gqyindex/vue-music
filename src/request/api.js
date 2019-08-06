@@ -44,10 +44,14 @@ export const songLyric = (data) => {
 };
 
 //根据id获取某一个歌手的详细信息
-export const singerDes = (data) => {
+export const singerInfo = (data) => {
   return axios.get('/artists',{params:data})
 };
 
+//获取歌手描述
+export const singerDesc = (data) => {
+  return axios.get('/artist/desc',{params:data})
+}
 export const likeMusic = (data) => {
   return axios.get('/like',{params:data})
 };
