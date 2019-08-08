@@ -2,7 +2,7 @@
   <section>
     <!--      当音频不存在的时候，显示默认图片，点击返回-->
     <div class="default" v-if="songUrl === null || lrc === null ">
-      <img src="../../assets/image/404.png">
+      <img src="../../assets/image/404.png" @click="back()">
     </div>
 
 
@@ -110,6 +110,11 @@
             clearInterval(timer)
           }
         }, 1000)
+      },
+
+      // 点击返回上一页
+      back() {
+        this.$router.go(-1)
       }
     }
   }

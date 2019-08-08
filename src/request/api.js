@@ -51,11 +51,18 @@ export const singerInfo = (data) => {
 //获取歌手描述
 export const singerDesc = (data) => {
   return axios.get('/artist/desc',{params:data})
-}
+};
+
 export const likeMusic = (data) => {
   return axios.get('/like',{params:data})
 };
 
+// 获取某一个MV
 export const singleMV = (data) => {
   return axios.get('mv/url',{params:data})
+};
+
+//获取全部的专辑信息
+export const albumList = () => {
+  return axios.get('/album/newest')
 };
