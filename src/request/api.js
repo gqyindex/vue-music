@@ -1,5 +1,4 @@
 import axios from 'axios'
-import yunData from "../pages/yunFile/yunData";
 
 axios.defaults.baseURL = 'http://localhost:3000';
 
@@ -66,3 +65,9 @@ export const singleMV = (data) => {
 export const albumList = () => {
   return axios.get('/album/newest')
 };
+
+// 获取新歌速递
+export const newSong = (data) => {
+   return axios.get('/top/song',{params:data})
+};
+
